@@ -1,4 +1,5 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+
 import pygame, random
 
 class Bloco:
@@ -161,7 +162,7 @@ class Telinha:
             self.matriz.append([])
             for j in range (0,16):
                 self.matriz[i].append(0)
-        print self.matriz
+        print(self.matriz)
 
 
 
@@ -215,7 +216,7 @@ class Telinha:
         elif key == pygame.K_RIGHT:
             self.pecaatual.move("right",1)
         elif key == pygame.K_d:
-            print self.matriz
+            print(self.matriz)
 
     def getmatrizn(self, x, y):
         if y<0:
@@ -288,7 +289,7 @@ class Telinha:
 
 
     def destroyblock(self, bloco):
-        print bloco.x, bloco.y
+        print (bloco.x, bloco.y)
         self.repository.remove(bloco)
 
 
