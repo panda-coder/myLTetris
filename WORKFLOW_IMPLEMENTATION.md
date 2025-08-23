@@ -119,6 +119,24 @@ uv run pytest tests/ -v --cov=tetris
 1. `README.md` - Added workflow status badges
 2. `.todo/2-CREATE-GITHUB-WORKFLW.md` - Marked as completed
 
+## 🔧 GitHub Action Versions Used
+
+All workflows use the latest stable versions of GitHub Actions (updated to resolve deprecation warnings):
+
+- **actions/checkout@v4**: Repository checkout
+- **actions/setup-python@v5**: Python environment setup (updated from v4)
+- **actions/cache@v4**: Dependency caching (updated from v3)
+- **actions/upload-artifact@v4**: Artifact uploads (updated from deprecated v3)
+- **astral-sh/setup-uv@v3**: UV package manager setup
+- **codecov/codecov-action@v4**: Coverage reporting (updated from v3)
+
+### Deprecation Fixes Applied
+- ✅ Updated `actions/upload-artifact` from v3 to v4 (resolved deprecation warning)
+- ✅ Updated `actions/setup-python` from v4 to v5 (latest version)
+- ✅ Updated `actions/cache` from v3 to v4 (improved performance)
+- ✅ Updated `codecov/codecov-action` from v3 to v4 (enhanced features)
+- ✅ Fixed missing `uv run` prefixes in CI commands
+
 ## 🎮 Pygame-Specific Configurations
 
 ### Linux (Ubuntu)
