@@ -8,8 +8,8 @@ This package contains the core components of the Tetris game:
 - Constants: Game configuration and constants
 """
 
-from .game import TetrisGame
 from .constants import *
+from .game import TetrisGame
 
 __version__ = "2.0.0"
 __author__ = "myLTetris Team"

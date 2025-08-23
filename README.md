@@ -1,5 +1,9 @@
 # myLTetris - Refactored Edition
 
+[![CI](https://github.com/YOUR_USERNAME/myLTetris/workflows/CI/badge.svg)](https://github.com/YOUR_USERNAME/myLTetris/actions/workflows/ci.yml)
+[![Tests](https://github.com/YOUR_USERNAME/myLTetris/workflows/Tests/badge.svg)](https://github.com/YOUR_USERNAME/myLTetris/actions/workflows/test.yml)
+[![Code Quality](https://github.com/YOUR_USERNAME/myLTetris/workflows/Code%20Quality/badge.svg)](https://github.com/YOUR_USERNAME/myLTetris/actions/workflows/code-quality.yml)
+
 A fully refactored Python Tetris game built with pygame, featuring clean architecture, comprehensive testing, and excellent maintainability.
 
 ## 🎮 Features

@@ -47,31 +47,22 @@ PIECE_TYPES = {
     3: "T_SHAPE",
     4: "Z_SHAPE_1",
     5: "Z_SHAPE_2",
-    6: "I_SHAPE"
+    6: "I_SHAPE",
 }
 
 # Piece configurations (relative positions from center)
 PIECE_CONFIGURATIONS = {
     0: [(0, -1), (1, -1), (1, 0), (0, 0)],  # Square
-    1: [(0, -2), (0, -1), (0, 0), (1, 0)],   # L
+    1: [(0, -2), (0, -1), (0, 0), (1, 0)],  # L
     2: [(0, -2), (0, -1), (0, 0), (-1, 0)],  # L inverted
-    3: [(0, -1), (0, 0), (-1, 0), (1, 0)],   # T
+    3: [(0, -1), (0, 0), (-1, 0), (1, 0)],  # T
     4: [(0, -1), (1, -1), (0, 0), (-1, 0)],  # Z1
     5: [(0, -1), (-1, -1), (0, 0), (1, 0)],  # Z2
-    6: [(0, -3), (0, -2), (0, -1), (0, 0)]   # I
+    6: [(0, -3), (0, -2), (0, -1), (0, 0)],  # I
 }
 
 # Movement directions
-DIRECTIONS = {
-    "LEFT": (-1, 0),
-    "RIGHT": (1, 0),
-    "DOWN": (0, 1),
-    "UP": (0, -1)
-}
+DIRECTIONS = {"LEFT": (-1, 0), "RIGHT": (1, 0), "DOWN": (0, 1), "UP": (0, -1)}
 
 # Game states
-GAME_STATES = {
-    "PLAYING": "playing",
-    "PAUSED": "paused",
-    "GAME_OVER": "game_over"
-}
+GAME_STATES = {"PLAYING": "playing", "PAUSED": "paused", "GAME_OVER": "game_over"}
