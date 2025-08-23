@@ -14,8 +14,8 @@ def create_badge_svg(label, message, color="brightgreen"):
     label_width = len(label) * 7 + 10
     message_width = len(message) * 7 + 10
     total_width = label_width + message_width
-    
-    svg_template = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{total_width}" height="20">
+
+    svg_template = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{total_width}" height="20">
   <linearGradient id="b" x2="0" y2="100%">
     <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
     <stop offset="1" stop-opacity=".1"/>
@@ -34,7 +34,7 @@ def create_badge_svg(label, message, color="brightgreen"):
     <text x="{(label_width + message_width//2) * 10}" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="{(len(message) * 70)}">{message}</text>
     <text x="{(label_width + message_width//2) * 10}" y="140" transform="scale(.1)" textLength="{(len(message) * 70)}">{message}</text>
   </g>
-</svg>'''
+</svg>"""
     return svg_template
 
 
@@ -48,7 +48,7 @@ def get_color_code(color_name):
         "orange": "fe7d37",
         "red": "e05d44",
         "lightgrey": "9f9f9f",
-        "blue": "007ec6"
+        "blue": "007ec6",
     }
     return colors.get(color_name, "4c1")
 
@@ -57,7 +57,7 @@ def main():
     """Generate all project badges."""
     # Create badges directory
     os.makedirs("badges", exist_ok=True)
-    
+
     # Generate various badges
     badges = [
         ("build", "passing", "brightgreen"),
@@ -67,18 +67,18 @@ def main():
         ("license", "MIT", "blue"),
         ("code style", "black", "black"),
         ("security", "bandit", "green"),
-        ("last updated", datetime.now().strftime("%Y-%m-%d"), "lightgrey")
+        ("last updated", datetime.now().strftime("%Y-%m-%d"), "lightgrey"),
     ]
-    
+
     for label, message, color in badges:
         badge_svg = create_badge_svg(label, message, color)
         filename = f"badges/{label.replace(' ', '_')}.svg"
-        
-        with open(filename, 'w') as f:
+
+        with open(filename, "w") as f:
             f.write(badge_svg)
-        
+
         print(f"Generated badge: {filename}")
-    
+
     # Generate README badges section
     badges_md = """
 ## 📊 Project Status
@@ -92,10 +92,10 @@ def main():
 ![Security](badges/security.svg)
 ![Last Updated](badges/last_updated.svg)
 """
-    
-    with open("badges/README_badges.md", 'w') as f:
+
+    with open("badges/README_badges.md", "w") as f:
         f.write(badges_md)
-    
+
     print("Generated README badges section: badges/README_badges.md")
 
 
