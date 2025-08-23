@@ -9,20 +9,10 @@ from typing import Tuple
 
 import pygame
 
-from .constants import (
-    BACKGROUND_COLOR,
-    DEFAULT_FPS,
-    FONT_SIZE,
-    GAME_AREA_HEIGHT,
-    GAME_AREA_WIDTH,
-    GAME_AREA_X,
-    GAME_AREA_Y,
-    GAME_STATES,
-    KEY_REPEAT_DELAY,
-    KEY_REPEAT_INTERVAL,
-    SCREEN_HEIGHT,
-    SCREEN_WIDTH,
-)
+from .constants import (BACKGROUND_COLOR, DEFAULT_FPS, FONT_SIZE,
+                        GAME_AREA_HEIGHT, GAME_AREA_WIDTH, GAME_AREA_X,
+                        GAME_AREA_Y, GAME_STATES, KEY_REPEAT_DELAY,
+                        KEY_REPEAT_INTERVAL, SCREEN_HEIGHT, SCREEN_WIDTH)
 from .game import TetrisGame
 
 

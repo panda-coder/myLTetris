@@ -11,12 +11,8 @@ import pygame
 pygame.init()
 
 from tetris.block import Block
-from tetris.constants import (
-    BLOCK_OFFSET_X,
-    BLOCK_OFFSET_Y,
-    BLOCK_RENDER_SIZE,
-    BLOCK_SIZE,
-)
+from tetris.constants import (BLOCK_OFFSET_X, BLOCK_OFFSET_Y,
+                              BLOCK_RENDER_SIZE, BLOCK_SIZE)
 
 
 class TestBlock(unittest.TestCase):
