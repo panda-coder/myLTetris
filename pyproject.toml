@@ -36,4 +36,9 @@ dev-dependencies = [
     "black>=22.0.0",
     "flake8>=4.0.0",
     "isort>=5.13.2",
+    "bandit>=1.7.0",
+    "safety>=2.0.0",
+    "mypy>=1.0.0",
+    "radon>=5.1.0",
+    "build>=0.10.0",
 ]
