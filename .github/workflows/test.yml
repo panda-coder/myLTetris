@@ -56,8 +56,7 @@ jobs:
 
     - name: Install Python dependencies
       run: |
-        uv sync
-        uv add --dev pytest pytest-cov
+        uv sync --dev
 
     - name: Run unit tests (Linux with virtual display)
       if: matrix.os == 'ubuntu-latest'
