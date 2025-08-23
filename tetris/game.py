@@ -10,8 +10,15 @@ from typing import TYPE_CHECKING, List, Optional, Tuple
 
 import pygame
 
-from .constants import (BACKGROUND_COLOR, BORDER_COLOR, GAME_STATES,
-                        GRID_HEIGHT, GRID_WIDTH, MATRIX_HEIGHT, MATRIX_WIDTH)
+from .constants import (
+    BACKGROUND_COLOR,
+    BORDER_COLOR,
+    GAME_STATES,
+    GRID_HEIGHT,
+    GRID_WIDTH,
+    MATRIX_HEIGHT,
+    MATRIX_WIDTH,
+)
 
 if TYPE_CHECKING:
     from .block import Block

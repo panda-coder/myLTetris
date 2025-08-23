@@ -13,9 +13,15 @@ def verify_imports():
 
     try:
         # Test constants
-        from tetris.constants import (BLOCK_SIZE, COLORS, GRID_HEIGHT,
-                                      GRID_WIDTH, PIECE_SHAPES, SCREEN_HEIGHT,
-                                      SCREEN_WIDTH)
+        from tetris.constants import (
+            BLOCK_SIZE,
+            COLORS,
+            GRID_HEIGHT,
+            GRID_WIDTH,
+            PIECE_SHAPES,
+            SCREEN_HEIGHT,
+            SCREEN_WIDTH,
+        )
 
         print(
             f"✅ Constants: Screen {SCREEN_WIDTH}x{SCREEN_HEIGHT}, Grid {GRID_WIDTH}x{GRID_HEIGHT}"

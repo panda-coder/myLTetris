@@ -11,8 +11,13 @@ import pygame
 pygame.init()
 test_surface = pygame.Surface((500, 600))
 
-from tetris.constants import (GAME_STATES, GRID_HEIGHT, GRID_WIDTH,
-                              MATRIX_HEIGHT, MATRIX_WIDTH)
+from tetris.constants import (
+    GAME_STATES,
+    GRID_HEIGHT,
+    GRID_WIDTH,
+    MATRIX_HEIGHT,
+    MATRIX_WIDTH,
+)
 from tetris.game import TetrisGame
 
 

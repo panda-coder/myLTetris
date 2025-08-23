@@ -24,9 +24,15 @@ def test_imports():
 
     try:
         # Test constants
-        from tetris.constants import (BLOCK_SIZE, DIRECTIONS, GRID_HEIGHT,
-                                      GRID_WIDTH, PIECE_CONFIGURATIONS,
-                                      SCREEN_HEIGHT, SCREEN_WIDTH)
+        from tetris.constants import (
+            BLOCK_SIZE,
+            DIRECTIONS,
+            GRID_HEIGHT,
+            GRID_WIDTH,
+            PIECE_CONFIGURATIONS,
+            SCREEN_HEIGHT,
+            SCREEN_WIDTH,
+        )
 
         write_result(f"Constants imported - Screen: {SCREEN_WIDTH}x{SCREEN_HEIGHT}")
 

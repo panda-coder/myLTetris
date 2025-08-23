@@ -8,9 +8,16 @@ blocks that make up Tetris pieces.
 import random
 from typing import TYPE_CHECKING, Tuple
 
-from .constants import (BLOCK_OFFSET_X, BLOCK_OFFSET_Y, BLOCK_RENDER_SIZE,
-                        BLOCK_SIZE, GRID_HEIGHT, GRID_WIDTH, MAX_COLOR_VALUE,
-                        MIN_COLOR_VALUE)
+from .constants import (
+    BLOCK_OFFSET_X,
+    BLOCK_OFFSET_Y,
+    BLOCK_RENDER_SIZE,
+    BLOCK_SIZE,
+    GRID_HEIGHT,
+    GRID_WIDTH,
+    MAX_COLOR_VALUE,
+    MIN_COLOR_VALUE,
+)
 
 if TYPE_CHECKING:
     from .game import TetrisGame
