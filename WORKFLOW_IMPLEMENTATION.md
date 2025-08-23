@@ -136,6 +136,12 @@ All workflows use the latest stable versions of GitHub Actions (updated to resol
 - ✅ Updated `actions/cache` from v3 to v4 (improved performance)
 - ✅ Updated `codecov/codecov-action` from v3 to v4 (enhanced features)
 - ✅ Fixed missing `uv run` prefixes in CI commands
+- ✅ Fixed `flake8: command not found` error by properly configuring uv dependencies
+
+### UV Dependency Management
+- All workflows now use `uv sync --dev` for consistent dependency installation
+- All dev dependencies are defined in `pyproject.toml` for centralized management
+- Includes: pytest, pytest-cov, black, flake8, isort, mypy, bandit, safety, build, twine, pyinstaller
 
 ## 🎮 Pygame-Specific Configurations
 
