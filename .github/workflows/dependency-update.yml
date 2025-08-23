@@ -1,0 +1,103 @@
+name: Dependency Updates
+
+on:
+  schedule:
+    # Run every Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+
+    - name: Update dependencies
+      run: |
+        # Update uv.lock file
+        uv sync --upgrade
+        
+        # Check for outdated packages
+        uv pip list --outdated > outdated_packages.txt || true
+
+    - name: Check for security vulnerabilities
+      run: |
+        uv sync --dev
+        uv run safety check --json --output security_report.json || true
+        uv run bandit -r . -f json -o bandit_report.json || true
+
+    - name: Create update summary
+      run: |
+        echo "# Dependency Update Summary" > update_summary.md
+        echo "## Date: $(date)" >> update_summary.md
+        echo "" >> update_summary.md
+        
+        if [ -s outdated_packages.txt ]; then
+          echo "## Outdated Packages:" >> update_summary.md
+          echo '```' >> update_summary.md
+          cat outdated_packages.txt >> update_summary.md
+          echo '```' >> update_summary.md
+        else
+          echo "## ✅ All packages are up to date!" >> update_summary.md
+        fi
+        
+        echo "" >> update_summary.md
+        echo "## Security Scan Results:" >> update_summary.md
+        
+        if [ -f security_report.json ]; then
+          echo "- Safety scan completed" >> update_summary.md
+        fi
+        
+        if [ -f bandit_report.json ]; then
+          echo "- Bandit scan completed" >> update_summary.md
+        fi
+
+    - name: Upload reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: dependency-reports
+        path: |
+          update_summary.md
+          outdated_packages.txt
+          security_report.json
+          bandit_report.json
+
+    - name: Create Pull Request
+      if: github.event_name == 'schedule'
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "chore: update dependencies and security scans"
+        title: "🔄 Automated Dependency Updates"
+        body: |
+          ## 🔄 Automated Dependency Updates
+          
+          This PR contains automated dependency updates and security scans.
+          
+          ### Changes:
+          - Updated `uv.lock` file with latest compatible versions
+          - Ran security scans with Safety and Bandit
+          - Generated dependency update summary
+          
+          ### Review Checklist:
+          - [ ] Check for breaking changes in updated packages
+          - [ ] Review security scan results
+          - [ ] Ensure all tests pass
+          - [ ] Verify game functionality
+          
+          **Note**: This PR was created automatically by the dependency update workflow.
+        branch: automated/dependency-updates
+        delete-branch: true

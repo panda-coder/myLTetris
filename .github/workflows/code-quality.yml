@@ -49,6 +49,32 @@ jobs:
       run: |
         uv run bandit -r . --severity-level medium
 
+    - name: Check for common security issues
+      run: |
+        # Check for hardcoded secrets (basic patterns)
+        echo "Checking for potential security issues..."
+        if grep -r "password\|secret\|key\|token" --include="*.py" . | grep -v "test" | grep -v ".git"; then
+          echo "⚠️  Potential hardcoded secrets found. Please review."
+        else
+          echo "✅ No obvious hardcoded secrets found."
+        fi
+
+    - name: Code complexity analysis
+      run: |
+        uv add --dev radon
+        echo "## Code Complexity Report" > complexity_report.md
+        echo "### Cyclomatic Complexity:" >> complexity_report.md
+        uv run radon cc tetris/ -s >> complexity_report.md
+        echo "" >> complexity_report.md
+        echo "### Maintainability Index:" >> complexity_report.md
+        uv run radon mi tetris/ -s >> complexity_report.md
+
+    - name: Upload complexity report
+      uses: actions/upload-artifact@v4
+      with:
+        name: complexity-report
+        path: complexity_report.md
+
   format:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'

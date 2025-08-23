@@ -1,0 +1,70 @@
+name: Performance Testing
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+  schedule:
+    # Run performance tests weekly on Sundays at 3 AM UTC
+    - cron: '0 3 * * 0'
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-dev python3-setuptools
+        sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+        sudo apt-get install -y xvfb
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+
+    - name: Install dependencies
+      run: |
+        uv sync --dev
+        uv add --dev memory-profiler line-profiler
+
+    - name: Run performance tests
+      run: |
+        export DISPLAY=:99
+        Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+        sleep 3
+        # Run memory profiling
+        uv run python -m memory_profiler verify_game.py
+        # Run performance verification
+        uv run python verify_refactoring.py
+      env:
+        SDL_VIDEODRIVER: dummy
+        SDL_AUDIODRIVER: dummy
+
+    - name: Generate performance report
+      run: |
+        echo "# Performance Test Results" > performance_report.md
+        echo "## Test Date: $(date)" >> performance_report.md
+        echo "## Python Version: $(python --version)" >> performance_report.md
+        echo "## System Info:" >> performance_report.md
+        echo "- OS: Ubuntu Latest" >> performance_report.md
+        echo "- CPU: $(nproc) cores" >> performance_report.md
+        echo "- Memory: $(free -h | grep Mem | awk '{print $2}')" >> performance_report.md
+        echo "" >> performance_report.md
+        echo "## Performance Tests Completed Successfully ✅" >> performance_report.md
+
+    - name: Upload performance report
+      uses: actions/upload-artifact@v4
+      with:
+        name: performance-report
+        path: performance_report.md
